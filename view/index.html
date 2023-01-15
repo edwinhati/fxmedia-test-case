@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Article</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="./assets/logo.png" alt="logo" width="100px" />
+        <h5 style="text-align: center; margin-top: auto">LOGO</h5>
+      </div>
+    </nav>
+    <div class="container">
+      <div>
+        <h2>My Article</h2>
+        <p class="date">12 January 2023</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste magni
+          reiciendis distinctio dicta! Dolore illo pariatur laborum dolores
+          assumenda ducimus suscipit distinctio laudantium! Itaque qui tempore
+          nisi doloribus ea voluptatibus?
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      <h2>Add your comment</h2>
+      <form action="" class="form">
+        <input type="text" placeholder="Name" style="width: 30%" />
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="5"
+          placeholder="Comment"
+          style="width: 50%"
+        ></textarea>
+        <div style="display: flex; flex-direction: row; gap: 10px">
+          <input
+            type="text"
+            placeholder="Chaptcha"
+            style="width: 30%"
+            id="chaptcha"
+          />
+          <label for="chaptcha">what is x + y?</label>
+        </div>
+        <button type="submit" style="width: 20%">Submit</button>
+      </form>
+    </div>
+    <div class="container">
+      <h2>Comments(2)</h2>
+      <div class="comment">
+        <h3>Faisal</h3>
+        <p class="date">6th May 2022</p>
+        <p>Lorem ipsum dolor sit amet</p>
+      </div><br>
+      <div class="comment">
+        <h3>Azwar</h3>
+        <p class="date">7th May 2022</p>
+        <p>Lorem ipsum dolor sit amet</p>
+      </div><br>
+    </div>
+  </body>
+</html>

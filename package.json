@@ -1,0 +1,27 @@
+{
+  "name": "fxmedia-test-case",
+  "version": "1.0.0",
+  "description": "FXMedia Full Stack Internship Test Case Project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwinhati/fxmedia-test-case.git"
+  },
+  "author": "Edwin Hati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edwinhati/fxmedia-test-case/issues"
+  },
+  "homepage": "https://github.com/edwinhati/fxmedia-test-case#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

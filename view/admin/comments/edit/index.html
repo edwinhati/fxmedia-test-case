@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Comments</title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+    <nav
+      style="display: flex; flex-direction: row; justify-content: space-between"
+    >
+      <div style="color: blue; margin-left: 10px">
+        <h3>List of Comments</h3>
+      </div>
+      <div style="color: red; justify-items: right; margin-right: 10px">
+        <h3>Logout</h3>
+      </div>
+    </nav>
+    <div class="container">
+        <h3>Edit Comment</h3>
+        <form action="" class="form">
+            <label for="commenter">Commenter Name</label>
+            <input type="text" name="commenter" id="commenter" value="Commenter Name">
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" cols="30" rows="10">Comment Body</textarea>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>
