@@ -1,5 +1,5 @@
 const Comment = require("../models/comment.model");
-exports.get = (req, res) => {
+exports.list = (req, res) => {
   Comment.find()
     .then((comments) => {
       res.send(comments);
@@ -11,6 +11,21 @@ exports.get = (req, res) => {
       });
     });
 };
+exports.get = (req, res) => {
+  const id = req.params.id;
+  Comment.findById(id)
+    .then((data) => {
+      if (!data)
+        res.status(404).send({ message: "Not found Comment with id " + id });
+      else res.send(data);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Comment with id=" + id });
+    });
+};
+
 exports.post = (req, res) => {
   const comment = new Comment({
     name: req.body.name,

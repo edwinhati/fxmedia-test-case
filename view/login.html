@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="centered">
+      <div style="display: flex; justify-content: center; height: 70px">
+        <div class="logo">
+          <img src="/logo" alt="logo" width="100px" />
+          <h5 style="text-align: center; margin-top: auto">LOGO</h5>
+        </div>
+      </div>
+      <div>
+        <form action="">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <div style="display: flex; justify-content: center">
+              <button type="button" onclick="Login()" style="width: 30%">Login</button>
+            </div>
+          </form>
+      <h5 id="error-message" style="color: red; text-align: center;  margin-top: 0px;">
+    </div>
+        </div>
+      </div>
+      
+    <script>
+      function Login() {
+        const data = {
+          email: document.querySelector("input[type=email]").value,
+          password: document.querySelector("input[type=password]").value,
+        };
+        $.ajax({
+          url: "/api/user/login",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(data),
+          success: function() {
+            setInterval(() => {
+              window.location.href = "/admin/comments";
+            }, 100);
+          },
+          error: function(err) {
+            document.getElementById("error-message").innerHTML = err.responseJSON.err;
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

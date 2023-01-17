@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List of Comments</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav
+      style="display: flex; flex-direction: row; justify-content: space-between"
+    >
+      <div style="color: blue; margin-left: 10px">
+        <h3>List of Comments</h3>
+      </div>
+
+      <div style="color: red; margin-right: 10px">
+        <a href="/api/user/logout" style="text-decoration: none"
+          ><h3>Logout</h3></a
+        >
+      </div>
+    </nav>
+    <div class="container" id="comments">
+      <h3>List of Comments</h3>
+    </div>
+    <script>
+      function toEdit(id) {
+        window.location.href = `/admin/comments/edit/${id}`;
+      }
+      $.ajax({
+        url: "/api/comment",
+        type: "GET",
+        success: function (data) {
+          const comments = data;
+          const commentContainer = document.getElementById("comments");
+          comments.forEach((comment) => {
+            const commentDiv = document.createElement("div");
+            commentDiv.classList.add("comment");
+            commentDiv.innerHTML = `
+            <h3>${comment.name}</h3>
+            <p class="date">${convertTimestamp(comment.date)}</p>
+            <p>${comment.comment}</p>
+            <div class="options">
+                <button type="button" onclick="toEdit('${comment._id}')">
+                    Edit
+                </button>
+                <button type="button" onclick="Delete('${comment._id}')">
+                    Delete
+                </button>
+            `;
+            commentContainer.appendChild(commentDiv);
+          });
+        },
+      });
+      function Delete(id) {
+        $.ajax({
+          url: `/api/comment/${id}`,
+          type: "DELETE",
+          success: location.reload(),
+          error: function (err) {
+            console.log(err);
+          },
+        })
+      }
+      function convertTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        const day = date.getDate();
+        const month = date.getMonth();
+        const year = date.getFullYear();
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        return `${day} ${months[month]} ${year}`;
+      }
+    </script>
+  </body>
+</html>

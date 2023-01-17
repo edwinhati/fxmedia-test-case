@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Comments</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav
+      style="display: flex; flex-direction: row; justify-content: space-between"
+    >
+      <div style="color: blue; margin-left: 10px">
+        <a href="/admin/comments" style="text-decoration: none"
+          ><h3>List of Comments</h3></a>
+      </div>
+      <div style="color: red; justify-items: right; margin-right: 10px">
+        <a href="/api/user/logout" style="text-decoration: none"
+          ><h3>Logout</h3></a
+        >
+      </div>
+    </nav>
+    <div class="container">
+      <h3>Edit Comment</h3>
+      <form action="" class="form">
+        <label for="commenter">Commenter Name</label>
+        <input
+          type="text"
+          name="commenter"
+          id="commenter"
+          value="Commenter Name"
+        />
+        <label for="comment">Comment</label>
+        <textarea name="comment" id="comment" cols="30" rows="10">
+Comment Body</textarea
+        >
+        <button type="button" id="update">Update</button>
+      </form>
+    </div>
+    <script>
+      const url = window.location.href;
+      const id = url.substring(url.lastIndexOf("/") + 1);
+      $.ajax({
+        url: `/api/comment/${id}`,
+        type: "GET",
+        success: function (data) {
+          const comment = data;
+          document.getElementById("commenter").value = comment.name;
+          document.getElementById("comment").value = comment.comment;
+          const button = document.getElementById("update");
+          button.addEventListener("click", () => {
+            Update(id);
+          });
+        },
+      });
+      function Update(id) {
+        const name = document.getElementById("commenter").value;
+        const comment = document.getElementById("comment").value;
+        $.ajax({
+          url: `/api/comment/${id}`,
+          type: "PUT",
+          contentType: "application/json",
+          data: JSON.stringify({ name, comment }),
+          success: (window.location.href = "/admin"),
+          error: function (err) {
+            console.log(err);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
