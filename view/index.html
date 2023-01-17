@@ -34,10 +34,7 @@
     <div class="container">
       <h2>Add your comment</h2>
       <form
-        action="/api/comment"
-        method="post"
         class="form"
-        onsubmit="Submit()"
       >
         <input type="text" placeholder="Name" style="width: 30%" id="name" />
         <textarea
@@ -91,15 +88,17 @@
       async function Submit() {
         const name = document.getElementById("name");
         const comment = document.getElementById("comment");
+        const data = {
+          name: name.value,
+          comment: comment.value
+        }
 
         if (chaptcha()) {
           await $.ajax({
             url: "/api/comment",
             type: "POST",
-            data: {
-              name: name.value,
-              comment: comment.value,
-            },
+            contentType: 'application/json',
+            data: JSON.stringify(data),
             success: function (data) {
               console.log(data);
             },
