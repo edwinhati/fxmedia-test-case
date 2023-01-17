@@ -33,7 +33,7 @@
     </div>
     <div class="container">
       <h2>Add your comment</h2>
-      <form action="" class="form" onsubmit="">
+      <form action="" class="form" onsubmit="Submit()">
         <input type="text" placeholder="Name" style="width: 30%" id="name" />
         <textarea
           name="comment"
@@ -68,7 +68,6 @@
         type: "GET",
         success: function (data) {
           const comments = data;
-          console.log(comments);
           const commentLength = document.getElementById("comment-length");
           commentLength.innerHTML = `Comments(${comments.length})`;
           const commentContainer = document.getElementById("comments");
@@ -88,24 +87,24 @@
         const name = document.getElementById("name");
         const comment = document.getElementById("comment");
         if (chaptcha()) {
-          console.log(name.value, comment.value);
+          $.ajax({
+          url: "/api/comment",
+          type: "POST",
+          data: {
+            name: name.value,
+            comment: comment.value,
+            // chaptcha: chaptcha.value,
+          },
+          success: function (data) {
+            console.log(data);
+          },
+        });
         } else {
           const chaptchaWarning = document.getElementById("chaptcha-warning");
           chaptchaWarning.innerHTML = "Chaptcha is wrong";
           chaptchaWarning.style.display = "block";
         }
-        // $.ajax({
-        //   url: "/api/comment",
-        //   type: "POST",
-        //   data: {
-        //     name: name.value,
-        //     comment: comment.value,
-        //     // chaptcha: chaptcha.value,
-        //   },
-        //   success: function (data) {
-        //     console.log(data);
-        //   },
-        // });
+        
       }
       const x = Math.floor(Math.random() * 10);
       const y = Math.floor(Math.random() * 10);
