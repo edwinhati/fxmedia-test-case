@@ -14,49 +14,96 @@
   </head>
   <body>
     <nav>
-      <div class="logo">
-        <img src="./logo" alt="logo" width="100px" />
-        <h5 style="text-align: center; margin-top: auto">LOGO</h5>
-      </div>
+      <h1 style="text-align: center; height: 15px; font-size: xx-large">
+        ScrumWorks
+      </h1>
+      <h5 style="text-align: center; margin-top: auto">Your Agile Partner</h5>
     </nav>
     <div class="container">
       <div>
-        <h2>My Article</h2>
-        <p class="date">12 January 2023</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste magni
-          reiciendis distinctio dicta! Dolore illo pariatur laborum dolores
-          assumenda ducimus suscipit distinctio laudantium! Itaque qui tempore
-          nisi doloribus ea voluptatibus?
+        <h2>
+          Introduction to Scrum: An Agile Framework for Managing Complex
+          Projects
+        </h2>
+        <p class="date">17 January 2023</p>
+        <p
+          style="
+            margin-left: 10px;
+            margin-right: 10px;
+            text-align: justify;
+            font-family: 'Roboto', sans-serif;
+          "
+        >
+          Scrum is a lightweight, iterative and incremental framework for
+          managing and completing complex projects. It was first introduced in
+          the field of software development but has been adapted for use in
+          other fields as well. The Scrum framework is based on a set of
+          principles and values that promote teamwork, collaboration, and
+          flexibility. The framework is composed of several roles, events, and
+          artifacts that work together to help teams deliver high-quality
+          products in a short amount of time.
+          <br /><br />
+          One of the key roles in Scrum is the Scrum Master, who is responsible
+          for facilitating the Scrum process and removing any obstacles that may
+          impede the team's progress. Another important role is the Product
+          Owner, who represents the stakeholders and is responsible for defining
+          and prioritizing the product backlog, which is a list of all the
+          features and requirements for the product. Scrum teams work in
+          sprints, which are short, time-boxed periods of time (usually 2-4
+          weeks) during which a "potentially releasable" product increment is
+          created. At the end of each sprint, the team holds a sprint review and
+          retrospective to inspect and adapt the process, identify improvements
+          and plan the next sprint.
+
+          <br /><br />
+          Scrum also uses daily stand-up meetings, called "Scrum meetings",
+          where team members quickly share what they've done since the last
+          meeting, what they're working on now, and any impediments they've
+          encountered.Scrum also uses daily stand-up meetings, called "Scrum
+          meetings", where team members quickly share what they've done since
+          the last meeting, what they're working on now, and any impediments
+          they've encountered.In summary, Scrum is an Agile framework that
+          promotes teamwork, collaboration, and flexibility. It is composed of
+          several roles, events, and artifacts that work together to help teams
+          deliver high-quality products in a short amount of time.
         </p>
       </div>
     </div>
     <div class="container">
-      <h2>Add your comment</h2>
-      <form
-        class="form"
-      >
-        <input type="text" placeholder="Name" style="width: 30%" id="name" />
+      <form class="form">
+        <h2>Add your comment</h2>
+        <input type="text" placeholder="Name" style="width: 330px" id="name" />
         <textarea
           name="comment"
           id="comment"
           cols="30"
           rows="5"
           placeholder="Comment"
-          style="width: 50%"
+          style="width: 330px"
         ></textarea>
         <div style="display: flex; flex-direction: row; gap: 10px">
+          <label
+            for="chaptcha"
+            id="chaptcha-value"
+            style="
+              margin-top: 0px;
+              border: 1px solid black;
+              padding: 3px;
+              border-radius: 5px;
+              width: 180px;
+              text-align: center;
+            "
+            >what is x + y?</label
+          >
           <input
             type="text"
             placeholder="Chaptcha"
-            style="width: 30%"
+            style="width: 140px"
             id="chaptcha"
           />
-          <label for="chaptcha" id="chaptcha-value">what is x + y?</label>
         </div>
-        <!-- chaptcha warning -->
         <div id="chaptcha-warning" style="color: red; display: none"></div>
-        <button type="button" onclick="Submit()" style="width: 20%">
+        <button type="button" onclick="Submit()" style="width: 200px">
           Submit
         </button>
       </form>
@@ -71,7 +118,7 @@
         success: function (data) {
           const comments = data;
           const commentLength = document.getElementById("comment-length");
-          commentLength.innerHTML = `Comments(${comments.length})`;
+          commentLength.innerHTML = `Comments (${comments.length})`;
           const commentContainer = document.getElementById("comments");
           comments.forEach((comment) => {
             const commentDiv = document.createElement("div");
@@ -90,14 +137,14 @@
         const comment = document.getElementById("comment");
         const data = {
           name: name.value,
-          comment: comment.value
-        }
+          comment: comment.value,
+        };
 
         if (chaptcha()) {
           await $.ajax({
             url: "/api/comment",
             type: "POST",
-            contentType: 'application/json',
+            contentType: "application/json",
             data: JSON.stringify(data),
             success: location.reload(),
             error: function (err) {

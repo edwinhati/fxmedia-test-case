@@ -17,23 +17,25 @@
     <div class="centered">
       <div style="display: flex; justify-content: center; height: 70px">
         <div class="logo">
-          <img src="/logo" alt="logo" width="100px" />
-          <h5 style="text-align: center; margin-top: auto">LOGO</h5>
+          <h1 style="text-align: center; height: 15px; font-size: xx-large">
+        ScrumWorks
+      </h1>
+      <h5 style="text-align: center; margin-top: auto">Your Agile Partner</h5>
         </div>
       </div>
-      <div>
+      <div style="margin-top: 20px; justify-content: center; align-items: center;">
         <form action="">
-          <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 10px; justify-content: center; align-items: center;">
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <div style="display: flex; justify-content: center">
-              <button type="button" onclick="Login()" style="width: 30%">Login</button>
+              <button type="button" onclick="Login()">Login</button>
             </div>
           </form>
       <h5 id="error-message" style="color: red; text-align: center;  margin-top: 0px;">
     </div>
-        </div>
-      </div>
+
+    
       
     <script>
       function Login() {
@@ -48,8 +50,8 @@
           data: JSON.stringify(data),
           success: function() {
             setInterval(() => {
-              window.location.href = "/admin/comments";
-            }, 100);
+              window.location.href = "/admin";
+            }, 1000);
           },
           error: function(err) {
             document.getElementById("error-message").innerHTML = err.responseJSON.err;
